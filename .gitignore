@@ -2,3 +2,4 @@ venv/
 base/
 *.data
 datos_cerebros/
+pruebas.ipynb
