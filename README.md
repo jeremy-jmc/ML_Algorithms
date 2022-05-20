@@ -179,8 +179,9 @@ $$L(x) = \text{Error} = \frac{-1}{m} \sum_{i=0}^m ( y^{(i)} . \log(s(x^{(i)})) +
 
 Donde:
 
-- $y^{(i)} . \log(s(x^{(i)}))$ mide el error cuando $y_i = 1$
-- $(1 - y^{(i)}) . \log(1 - s(x^{(i)}))$ mide el error cuando $y_i = 0$
+$y^{(i)} . \log(s(x^{(i)}))$ mide el error cuando $y_i = 1$
+
+$(1 - y^{(i)}) . \log(1 - s(x^{(i)}))$ mide el error cuando $y_i = 0$
 
 ### **Gradient descent**
 
@@ -243,6 +244,43 @@ Majority vote
     <img src="./img/dt-0.png" width="40%">
 </div>
 
+### **Ecuación de la información**
+
+Cuando algo es muy probable que suceda no hay información, cuando algo es poco probable hay mucha información por descubrir/analizar.
+
+$$I(x) = log(1/p(x)) = -log(p(x))$$
+
+### **Entropía**
+
+- Medida de impureza o aleatoriedad en los puntos de datos.
+
+$$H(x) = E[I(x)] = \sum_{i=1}^n p(x_i) I(x_i) = -  \sum_{i=1}^n p(x_i) log(x_i)$$
+
+### **Nivel de desorden de una clase**
+
+$$D_s = - \sum_{c \in C} P_c log_2(P_c)$$
+
+### **Information Gain**
+
+- Cuantifica que caracteristica proporciona máxima información.
+
+$$Gain(S) = D_s(S) - \sum_{f \in \text{Features}} \frac{|S_f|}{|S|} * D_s(S_f)$$
+
+### **Gini Index**
+
+- Calcula la cantidad de probabilidad de que una característica específica se clasifique incorrectamente cuando se selecciona al azar
+
+$$Gini(x) = 1 - \sum_j^{\text{hijos}} [p(j|t)]^2$$
+
+### **Gini Split**
+
+$$Gini_{\text{split}} = \sum_{i=1}^k \frac{n_i}{n} Gini(i)$$
+
+
+## **Bagging y Random forest**
+
+- Bagging = Bootstrap Aggregating
+- Entrenar muchos modelos de DT y por majority vote de los resultados determinar la clase a la que pertenece la data de test.
 
 # **Clustering**
 
@@ -256,6 +294,15 @@ Majority vote
 ## **Gaussian mixture model**
 
 # **Metricas**
+
+## **Model selection**
+
+Elección de hiperparámetros óptimos para el modelo.
+
+Ejm:
+- learning rate $\alpha$, treshold, epochs in Regression
+- lambda $\lambda$ for Regularization L1 L2
+- centroid radio in DBSCan and MeanShift
 
 ## **Loss function**
 
@@ -337,6 +384,46 @@ This method rescales the range of the data to [0,1].
 ### **Z Normalization**
 
 ### **Unit Vector Normalization**
+
+## **Validation and training in classification problems**
+
+Sirve para estimar el ratio de error correcto.
+
+### **Holdout**
+
+<div align="center">
+    <img src="./img/holdout.png" width="70%">
+</div>
+
+### **Resampling methods**
+
+#### **Random subsampling**
+
+<div align="center">
+    <img src="./img/random_sub.png" width="70%">
+</div>
+
+#### **K-Fold Cross-Validation**
+
+<div align="center">
+    <img src="./img/kfold-cross.png" width="70%">
+</div>
+
+#### **Leave-one-out Validation**
+
+<div align="center">
+    <img src="./img/leave-one_leave-out.png" width="70%">
+</div>
+
+- Extremadamente pesado a nivel computacional para base de datos grandes
+- Recomendado para bases de datos pequeñas
+
+#### **Bootstrap**
+
+<div align="center">
+    <img src="./img/bootstrap.png" width="70%">
+</div>
+
 
 # **Articles**
 
