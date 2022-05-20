@@ -201,6 +201,19 @@ $$w_i = w_i - \alpha * \frac{\partial{\text{ Loss}}}{\partial{w_i}}$$
     <img src="./img/svm_def.png" width="40%">
 </div>
 
+### **Hard SVM**
+
+$$L = f(x,y) - \lambda g(x,y) = 0$$
+$$L = \frac{1}{2} ||w||^2 - \sum_{i=1}^{n} \lambda_i (y_i (w.x_i + b) - 1)$$
+
+### **Soft SVM**
+
+$$
+\begin{align*}
+L &= \frac{1}{2} ||w||^2 - c \sum_{i=1}^{n} max(0, 1 - yi(x.w +b))\\ 
+\end{align*}
+$$
+
 ### **Margins**
 
 Hard SVM                  |  Soft SVM
@@ -228,6 +241,10 @@ One to One                  |  One to Many
     <img src="./img/knn-0.png" width="40%">
 </div>
 
+- Guarda la información de los vecinos en una estructura de datos eficiente: KD Tree, M Tree, R Tree, Slim Tree, teniendo en cuenta la similitud entre ellos
+- Lee los K vecinos mas cercanos en unidades o en función de un R(radio)
+- El problema es como setear el hiperparametro K y R
+- Puede usarse para clasificación y regresión
 
 **Voting**
 Plurality vote (clasificación)
@@ -239,6 +256,7 @@ Majority vote
 
 ## **Decision Trees**
 - Modelo de predicción
+- Los nodos terminales deben tener alta pureza
 
 <div align="center">
     <img src="./img/dt-0.png" width="40%">
@@ -263,7 +281,7 @@ $$D_s = - \sum_{c \in C} P_c log_2(P_c)$$
 ### **Information Gain**
 
 - Cuantifica que caracteristica proporciona máxima información.
-
+- `Gain = Caos no agrupado - Caos agrupado`
 $$Gain(S) = D_s(S) - \sum_{f \in \text{Features}} \frac{|S_f|}{|S|} * D_s(S_f)$$
 
 ### **Gini Index**
@@ -281,6 +299,7 @@ $$Gini_{\text{split}} = \sum_{i=1}^k \frac{n_i}{n} Gini(i)$$
 
 - Bagging = Bootstrap Aggregating
 - Entrenar muchos modelos de DT y por majority vote de los resultados determinar la clase a la que pertenece la data de test.
+- Ensembling → ensamblar varios clasificadores entrenados y de acuerdo a la moda elegir el resultado
 
 # **Clustering**
 
@@ -303,6 +322,13 @@ Ejm:
 - learning rate $\alpha$, treshold, epochs in Regression
 - lambda $\lambda$ for Regularization L1 L2
 - centroid radio in DBSCan and MeanShift
+
+### **Learning rate**
+- Determina cuan rápido se mueve el modelo
+
+### **Bias**
+
+### **Variance**
 
 ## **Loss function**
 
@@ -372,7 +398,19 @@ L1 genera valores más cercanos a 0 que L2
 
 - Llegar al mínimo global de la función de error provoca un overfitting
 
+### **Overfitting**
+- Se asocia a problemas de generalización
+- Modelos complejos se asocian a este problema
+    - Solución: Disminuir la complejidad del polinomio bajando su grado
+
+### **Underfitting**
+- Modelos inexactos se asocian a este problema
+    - Solución: Aumentar complejidad del modelo y cómputo
+
 ## **Data Normalization**
+
+- Ajusta mejor las derivadas y evita que los cambios durante el descenso del gradiente no sean excesivos.
+- Determina la perfección de la dirección en el descenso del gradiente
 
 ### **Min-Max Normalization**
 This method rescales the range of the data to [0,1].
