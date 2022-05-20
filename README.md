@@ -3,10 +3,10 @@
 # **ÍNDICE**
 
 - [Regresión](#Regresión)
-    - [Regresión lineal univariable](##Regresión-lineal-univariable)
-    - [Regresión lineal multivariable](##Regresión-lineal-multivariable)
-    - [Regresión no lineal univariable](##Regresión-no-lineal-univariable)
-    - [Regresión logística](#Regresión-logística)
+    - [Regresión lineal univariable](##Regresion-lineal-univariable)
+    - [Regresión lineal multivariable](##Regresion-lineal-multivariable)
+    - [Regresión no lineal univariable](##Regresion-no-lineal-univariable)
+    - [Regresión logística](#Regresion-logistica)
 - [Clasificación](#Clasificación)
     - [Support vector machine](##Support-vector-machine)
     - [KNN](##KNN)
@@ -17,7 +17,7 @@
 
 # **Regresión**
 
-## **Regresión lineal univariable**
+## **Regresion lineal univariable**
 - Intento de modelar relación entre variables ajustando una ecuación lineal a la data observada.
 
 <div align="center">
@@ -49,7 +49,7 @@ $$dw = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-x_i)$$
 
 $$w_i = w_i - \alpha * \frac{\partial{\text{ Loss}}}{\partial{w_i}}$$
 
-## **Regresión lineal multivariable**
+## **Regresion lineal multivariable**
 - Generalización de la regresión lineal para el caso donde existe más de una variable independiente.
 
 <div align="center">
@@ -116,13 +116,17 @@ $$
 \frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-x^{i}_{j})
 $$
 
-## **Regresión no lineal univariable**
+Donde $m$ ees el número de muestras de entrenamiento.
+
+## **Regresion no lineal univariable**
 - Regresión en el que la data observada se modela mediante combinación no lineal de los parámetros del modelo.
 
 <div align="center">
     <img src="./img/non-linear.jpg" width="40%">
 </div>
 
+- Polinomios de grado muy alto provocan overfitting
+    - Solución 1: Añadir regularizador (L1 L2)
 
 ### **Hypothesis**
 
@@ -140,16 +144,53 @@ $$
 \frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-x_j^{(i)})
 $$
 
-## **Regresión logística**
+## **Regresion logística**
 - Método de clasificación que modela la probabilidad de un resultado discreto dado un input.
 - Modela generalmente resultados binarios (T/F)
+- Intenta encontrar una recta que separe bien 2 grupos
 
 <div align="center">
     <img src="./img/log-reg-1.png" width="60%">
 </div>
 
+### **Hypothesis**
 
-# **Clasificación**
+- Se puede notar que para los 3 anteriores tipos de regresión descritos, su función de error es la misma, lo único que varía es la hipótesis
+
+Para $n$ características:
+
+- Ecuación de la recta o hiperplano
+
+$$h(x^{(i)}) = w_0*1 + w_1 * x^{(i)}_1 + w_2 * x^{(i)}_2 + w_n * x^{(i)}_n$$
+$$h(x^{(i)}) = <x^{(i)}, w> = x^{(i)} . w^T$$ 
+
+- Ecuación de la función sigmoidea (clasificador binario)
+
+$$s(x^{(i)}) = \frac{1}{1 - \epsilon^{h(x^{(i))}}} = \frac{1}{1 - \epsilon^{x^{(i)} . w^T}}$$
+
+### **Loss function**
+
+**Cross-Entropy**
+
+$$L = -\frac{1}{n}\sum_{i=0}^n(y_ilog(s(x_i)) + (1-y_i)log(1-s(x_i)))$$
+
+$$L(x) = \text{Error} = \frac{-1}{m} \sum_{i=0}^m ( y^{(i)} . \log(s(x^{(i)})) + (1 - y^{(i)}) . \log(1 - s(x^{(i)})))$$
+
+Donde:
+
+$y^{(i)} . \log(s(x^{(i)}))$ mide el error cuando $y_i = 1$
+
+$(1 - y^{(i)}) . \log(1 - s(x^{(i)}))$ mide el error cuando $y_i = 0$
+
+### **Gradient descent**
+
+$$ \frac{\partial{L}}{\partial{w_0}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-1) $$
+$$ \frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-x^{i}_{j}) $$
+
+
+$$w_i = w_i - \alpha * \frac{\partial{\text{ Loss}}}{\partial{w_i}}$$
+
+# **Clasificacion**
 
 ## **Support vector machine**
 - Método usado en regresión y clasificación.
@@ -202,11 +243,19 @@ Majority vote
 
 ## **Regularization**
 
-### **L1**
+### **L1 Lasso**
 
-### **L2**
+$$\sum_{i=1}^p |w_i|$$
+
+### **L2 Ridge**
+
+$$\sum_{i=1}^p (w_i)^2$$
+
+L1 genera valores más cercanos a 0 que L2
 
 ## **Over/Under-fitting**
+
+- Llegar al mínimo global de la función de error provoca un overfitting
 
 ## **Data Normalization**
 
