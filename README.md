@@ -125,7 +125,7 @@ Donde $m$ ees el número de muestras de entrenamiento.
 </div>
 
 - Polinomios de grado muy alto provocan overfitting
-    - Solución 1: Añadir regularizador (L1 L2)
+    - Solución: Añadir regularizador (L1 L2)
 
 ### **Hypothesis**
 
@@ -164,7 +164,10 @@ $$h(x^{(i)}) = <x^{(i)}, w> = x^{(i)} . w^T$$
 
 - Ecuación de la función sigmoidea (clasificador binario)
 
-$$s(x^{(i)}) = \frac{1}{1 - \epsilon^{h(x^{(i))}}} = \frac{1}{1 - \epsilon^{x^{(i)} . w^T}}$$
+$$s(x^{(i)}) = \frac{1}{1 - \epsilon^{h(x^{(i)})}} = \frac{1}{1 - \epsilon^{x^{(i)} . w^T}}$$
+
+
+$s(x_i)$ verifica que tan bien el hiperplano divisorio $h(x_i)$ separa ambos grupos y lo optimiza aplicando gradiente descendiente en su función de error.
 
 ### **Loss function**
 
@@ -176,9 +179,8 @@ $$L(x) = \text{Error} = \frac{-1}{m} \sum_{i=0}^m ( y^{(i)} . \log(s(x^{(i)})) +
 
 Donde:
 
-$y^{(i)} . \log(s(x^{(i)}))$ mide el error cuando $y_i = 1$
-
-$(1 - y^{(i)}) . \log(1 - s(x^{(i)}))$ mide el error cuando $y_i = 0$
+- $y^{(i)} . \log(s(x^{(i)}))$ mide el error cuando $y_i = 1$
+- $(1 - y^{(i)}) . \log(1 - s(x^{(i)}))$ mide el error cuando $y_i = 0$
 
 ### **Gradient descent**
 
@@ -192,10 +194,28 @@ $$w_i = w_i - \alpha * \frac{\partial{\text{ Loss}}}{\partial{w_i}}$$
 
 ## **Support vector machine**
 - Método usado en regresión y clasificación.
-- Algoritmo que trata de encontrar un hiperplano divisorio bajo ciertos límites de decisión.
+- Algoritmo que trata de encontrar un buen hiperplano divisorio bajo ciertos límites de decisión.
 
 <div align="center">
     <img src="./img/svm_def.png" width="40%">
+</div>
+
+### **Margins**
+
+Hard SVM                  |  Soft SVM
+:-------------------------:|:-------------------------:
+![](./img/svm_hard.png)   |  ![](./img/svm_soft.png)
+
+### **Multiclass SVM**
+
+One to One                  |  One to Many
+:-------------------------:|:-------------------------:
+![](./img/one_to_one.png)   |  ![](./img/one_to_many.png)
+
+### **Kernels**
+
+<div align="center">
+    <img src="./img/kernels.png" width="50%">
 </div>
 
 ## **KNN**
@@ -239,17 +259,67 @@ Majority vote
 
 ## **Loss function**
 
+### **Mean Squared Error**
+
+**MSE** is preferred to use when **there are low outliers in the data**. This is one of the drawbacks of MSE.
+
+$$\text{MSE} = \frac{1}{2m} \sum_{i=1}^{m} (y^{(i)} - \overline{y}^{(i)})^2$$
+
+### **Mean Absolute Error**
+
+**MAE** is preferred to use **when there is a chance of having outliers in the data**. This is one of the Advantages of MAE. Using **standardized data is efficient** for better optimization using this loss.
+
+$$\text{MAE} = \frac{1}{m} \sum_{i=1}^{m} \mid (y^{(i)} - \overline{y}^{(i)}) \mid$$
+
+### **Huber Loss**
+
+**Huber Loss** can be interpreted as a combination of the Mean squared loss function and Mean Absolute Error.
+
+Huber loss brings the best of both MSE and MAE.
+
+The δ term is a hyper-parameter for **Hinge Loss**.
+
+$$
+\text{Hubber Loss} =
+\begin{cases} 
+    \frac{1}{2} (y^{(i)} - \overline{y}^{(i)})^2,  & \text{if }  (y^{(i)} - \overline{y}^{(i)}) \leq \delta\\
+    \delta (\mid (y^{(i)} - \overline{y}^{(i)}) \mid - \frac{1}{2} \delta) & \text{otherwise}
+\end{cases}
+$$
+
+
+### **Hinge Loss**
+
+$$L = max(0, 1 - y * f(x)) $$
+
+### **Cross entropy Loss**
+
+$$L = - y_i log(s(x_i)) - (1-y_i)log(1-s(x_i)) $$
+
 ## **Regularization**
 
-### **L1 Lasso**
+The key difference between these techniques is that Lasso shrinks the less important feature’s coefficient to zero thus, removing some feature altogether. So, this works well for feature selection in case we have a huge number of features.
 
-$$\sum_{i=1}^p |w_i|$$
+### **L1 Regularization: Lasso Regresssion**
 
-### **L2 Ridge**
+**LASSO:** Least Absolute Shrinkage and Selection Operator
 
-$$\sum_{i=1}^p (w_i)^2$$
+$$\lambda_i * \sum_{j=1}^{p} | w_j | $$
+
+### **L2 Regularization: Ridge Regression**
+
+$$\frac{\lambda}{n} * \sum_{j=1}^{p} (w_j)^2$$
 
 L1 genera valores más cercanos a 0 que L2
+
+
+## **Gradient descent optimization algorithms**
+
+- **Batch gradient descent**
+
+- **Stochastic gradient descent**
+
+- **Mini-batch gradient descent**
 
 ## **Over/Under-fitting**
 
@@ -272,6 +342,7 @@ This method rescales the range of the data to [0,1].
 
 - [Hypothesis in ML](https://machinelearningmastery.com/what-is-a-hypothesis-in-machine-learning/)
 - [Common Loss functions](https://towardsdatascience.com/common-loss-functions-in-machine-learning-46af0ffc4d23)
+- [7 loss functions](https://www.analyticsvidhya.com/blog/2019/08/detailed-guide-7-loss-functions-machine-learning-python-code/)
     - MSE, MAE, MBE, Hinge Loss, Cross Entropy Loss
 - [MAE MSE Hubber Loss](https://datamonje.com/regression-loss-functions/)
 - [Gradient Descent](https://ml-cheatsheet.readthedocs.io/en/latest/gradient_descent.html)
