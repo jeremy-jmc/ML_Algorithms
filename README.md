@@ -11,6 +11,10 @@
 ## **Regresión lineal univariable**
 - Intento de modelar relación entre variables ajustando una ecuación lineal a la data observada.
 
+<div align="center">
+    <img src="./img/lin-reg-0.gif" width="45%">
+</div>
+
 ### **Hypothesis**
 
 $$h(x_i) = x_i*w + b$$
@@ -38,6 +42,11 @@ $$w_i = w_i - \alpha * \frac{\partial{\text{ Loss}}}{\partial{w_i}}$$
 
 ## **Regresión lineal multivariable**
 - Generalización de la regresión lineal para el caso donde existe más de una variable independiente.
+
+<div align="center">
+    <img src="./img/multiple-regression.png" width="45%">
+</div>
+
 
 ### **Hypothesis**
 For $n$ features:
@@ -97,12 +106,37 @@ $$
 \frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-x^{i}_{j})
 $$
 
-## **Regresión no lineal**
+## **Regresión no lineal univariable**
 - Regresión en el que la data observada se modela mediante combinación no lineal de los parámetros del modelo.
+
+<div align="center">
+    <img src="./img/non-linear.jpg" width="40%">
+</div>
+
+
+### **Hypothesis**
+
+$$h(x) = w_0*(x)^0 + w_1 * (x)^1 + w_2 * (x)^2 + ... + w_p * (x)^p$$
+$$h(x) = [x^0, x^1, x^2, ..., x^p].[w_0, w_1, w_2, ..., w_p]^t$$
+
+### **Loss function**
+
+- MSE
+
+### **Gradient descent**
+$$
+\frac{\partial{L}}{\partial{w_0}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-1) \\
+\frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-x_j^{(i)})
+$$
 
 ## **Regresión logística**
 - Método de clasificación que modela la probabilidad de un resultado discreto dado un input.
 - Modela generalmente resultados binarios (T/F)
+
+<div align="center">
+    <img src="./img/log-reg-1.png" width="60%">
+</div>
+
 
 # **Clasificación**
 
@@ -110,10 +144,19 @@ $$
 - Método usado en regresión y clasificación.
 - Algoritmo que trata de encontrar un hiperplano divisorio bajo ciertos límites de decisión.
 
+<div align="center">
+    <img src="./img/svm_def.png" width="40%">
+</div>
+
 ## **KNN**
 - Método supervisado de clasificación, el cual usa la proximidad para realizar clasificaciones o predicciones sobres la agrupación de un punto de datos individual
 - Puede ser usado también para regresión
 - Lazy learning algorithm
+
+<div align="center">
+    <img src="./img/knn-0.png" width="40%">
+</div>
+
 
 **Voting**
 Plurality vote (clasificación)
@@ -126,12 +169,46 @@ Majority vote
 ## **Decision Trees**
 - Modelo de predicción
 
+<div align="center">
+    <img src="./img/dt-0.png" width="40%">
+</div>
+
+
 # **Clustering**
 
 ## **K-Means**
 - Método de clustering no supervisado que busca dividir la data en K grupos donde cada observación pertenece al grupo con valor medio más cercano
 
+<div align="center">
+    <img src="./img/K_Means.gif" width="40%">
+</div>
+
 ## **Gaussian mixture model**
+
+# **Extra**
+
+## **Loss function**
+
+## **Regularization**
+
+### **L1**
+
+### **L2**
+
+## **Over/Under-fitting**
+
+## **Data Normalization**
+
+### **Min-Max Normalization**
+This method rescales the range of the data to [0,1].
+
+<div align="center">
+    <img src="./img/min-max_normalization.png">
+</div>
+
+### **Z Normalization**
+
+### **Unit Vector Normalization**
 
 # **Articles**
 
@@ -142,7 +219,7 @@ Majority vote
 - [Gradient Descent](https://ml-cheatsheet.readthedocs.io/en/latest/gradient_descent.html)
     - Learning rate, Cost function
 - [Understanding learning rate](https://towardsdatascience.com/https-medium-com-dashingaditya-rakhecha-understanding-learning-rate-dd5da26bb6de)
-
+- [Understanding data normalization](https://towardsdatascience.com/understand-data-normalization-in-machine-learning-8ff3062101f0)
 
 # **References**
 
