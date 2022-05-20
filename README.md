@@ -3,8 +3,17 @@
 # **ÍNDICE**
 
 - [Regresión](#Regresión)
+    - [Regresión lineal univariable](##Regresión-lineal-univariable)
+    - [Regresión lineal multivariable](##Regresión-lineal-multivariable)
+    - [Regresión no lineal univariable](##Regresión-no-lineal-univariable)
+    - [Regresión logística](#Regresión-logística)
 - [Clasificación](#Clasificación)
+    - [Support vector machine](##Support-vector-machine)
+    - [KNN](##KNN)
+    - [Decision Trees](##Decision-Trees)
 - [Clustering](#Clustering)
+    - [K Means](##K-Means)
+    - [Gaussian mixture model](##Gaussian-mixture-model)
 
 # **Regresión**
 
@@ -103,6 +112,7 @@ $$
 
 $$
 \frac{\partial{L}}{\partial{w_0}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-1) \\
+
 \frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-x^{i}_{j})
 $$
 
@@ -126,6 +136,7 @@ $$h(x) = [x^0, x^1, x^2, ..., x^p].[w_0, w_1, w_2, ..., w_p]^t$$
 ### **Gradient descent**
 $$
 \frac{\partial{L}}{\partial{w_0}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-1) \\
+
 \frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-x_j^{(i)})
 $$
 
@@ -176,7 +187,7 @@ Majority vote
 
 # **Clustering**
 
-## **K-Means**
+## **K Means**
 - Método de clustering no supervisado que busca dividir la data en K grupos donde cada observación pertenece al grupo con valor medio más cercano
 
 <div align="center">
@@ -185,7 +196,7 @@ Majority vote
 
 ## **Gaussian mixture model**
 
-# **Extra**
+# **Metricas**
 
 ## **Loss function**
 
