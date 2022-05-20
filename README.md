@@ -110,11 +110,10 @@ $$
 
 ### **Gradient descent**
 
-$$
-\frac{\partial{L}}{\partial{w_0}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-1) \\
+$$\frac{\partial{L}}{\partial{w_0}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-1)$$
 
-\frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-x^{i}_{j})
-$$
+$$\frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x^i))(-x^{i}_{j})$$
+
 
 ## **Regresión no lineal univariable**
 - Regresión en el que la data observada se modela mediante combinación no lineal de los parámetros del modelo.
@@ -134,11 +133,10 @@ $$h(x) = [x^0, x^1, x^2, ..., x^p].[w_0, w_1, w_2, ..., w_p]^t$$
 - MSE
 
 ### **Gradient descent**
-$$
-\frac{\partial{L}}{\partial{w_0}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-1) \\
 
-\frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-x_j^{(i)})
-$$
+$$\frac{\partial{L}}{\partial{w_0}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-1)$$
+
+$$\frac{\partial{L}}{\partial{w_{j\neq 0}}} = \frac{1}{m}\sum_{i=0}^m(y_i - h(x_i))(-x_j^{(i)})$$
 
 ## **Regresión logística**
 - Método de clasificación que modela la probabilidad de un resultado discreto dado un input.
