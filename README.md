@@ -1,4 +1,6 @@
-# IA-2022_1
+# Machine Learning Algorithms
+
+CS2601-IA UTEC 2022-1
 
 # **ÍNDICE**
 
